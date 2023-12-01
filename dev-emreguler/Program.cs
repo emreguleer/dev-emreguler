@@ -15,7 +15,11 @@ namespace DairyProject
         {
             Console.WriteLine("Günlüğe Hoşgeldiniz!\n");
             Thread.Sleep(2000);
-            // Taking username and password from user.
+            RegisterControl();
+        }
+        // Taking username and password from user.
+        static void RegisterControl()
+        {
             Console.WriteLine("(ü)ye girişi  (k)ayıt ol");
             char register = char.Parse(Console.ReadLine());
             if (register == 'ü')
@@ -25,22 +29,27 @@ namespace DairyProject
             // Creating new username and password then control.
             else if (register == 'k')
             {
-                StreamWriter userName = new StreamWriter(usernamepath, true);
-                StreamWriter password = new StreamWriter(passwordpath, true);
-                Console.WriteLine("Kullanıcı adı giriniz.");
-                string name1 = Console.ReadLine();
-                Console.WriteLine("Şifre giriniz.");
-                string userPassword = Console.ReadLine();
-                Console.WriteLine("Kullanıcı adı ve şifre doğru giriş yapabilirsiniz.");
-                Thread.Sleep(2000);
-                userName.WriteLine(name1);
-                password.WriteLine(userPassword);
-                name.Add(name1);
-                key.Add(userPassword);
-                userName.Close();
-                password.Close();
-                Control();
+                Register();
             }
+        }
+        //Taking username and password from user.
+        static void Register()
+        {
+            StreamWriter userName = new StreamWriter(usernamepath, true);
+            StreamWriter password = new StreamWriter(passwordpath, true);
+            Console.WriteLine("Kullanıcı adı giriniz.");
+            string name1 = Console.ReadLine();
+            Console.WriteLine("Şifre giriniz.");
+            string userPassword = Console.ReadLine();
+            Console.WriteLine("Kullanıcı adı ve şifre doğru giriş yapabilirsiniz.");
+            Thread.Sleep(2000);
+            userName.WriteLine(name1);
+            password.WriteLine(userPassword);
+            name.Add(name1);
+            key.Add(userPassword);
+            userName.Close();
+            password.Close();
+            Control();
         }
         //Creating new menu and repeate after every choice.
         public static void Menu()
@@ -71,7 +80,8 @@ namespace DairyProject
             }
             else
             {
-                Console.WriteLine("Hatalı sayı girdiniz.");
+                Console.WriteLine("Hatalı sayı girdiniz. Tekrar deneyiniz.");
+                Menu();
             }
         }
         //Create new records.
@@ -80,8 +90,7 @@ namespace DairyProject
             if (limit)
             {
                 StreamWriter day = new StreamWriter(path, true);
-                Console.WriteLine();
-                Console.WriteLine("Gününüz nasıl geçti ? ");
+                Console.WriteLine("\nGününüz nasıl geçti ? ");
                 string yourDay = Console.ReadLine();
                 DateTime dateTime = DateTime.Now;
                 string date = dateTime.ToString("dd/MM/yyyy");
@@ -110,7 +119,7 @@ namespace DairyProject
                 }
             }
         }
-        //Listing all records.
+        //Listing all static records.
         public static void ListRecords()
         {
             Console.WriteLine();
@@ -150,7 +159,6 @@ namespace DairyProject
         //Creating id and password.
         public static void Control()
         {
-
             StreamReader userName = new StreamReader(usernamepath);
             StreamReader password = new StreamReader(passwordpath);
             string user = userName.ReadLine();
@@ -159,14 +167,12 @@ namespace DairyProject
             {
                 user = userName.ReadLine();
                 name.Add(user);
-
             }
             userName.Close();
             while (userPassword != null)
             {
                 userPassword = password.ReadLine();
                 key.Add(userPassword);
-
             }
             password.Close();
             Console.WriteLine("Kullanıcı adı giriniz.");
@@ -177,7 +183,6 @@ namespace DairyProject
             {
                 if (key.Contains(userPassword2))
                 {
-
                     Console.WriteLine("Kullanıcı adı ve şifreniz doğru menüye yönlendiriliyorsunuz.");
                     Menu();
                 }
