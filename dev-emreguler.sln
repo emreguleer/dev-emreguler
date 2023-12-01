@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34221.43
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dev-emreguler", "dev-emreguler\dev-emreguler.csproj", "{AEF06BAB-6B5B-4FD8-AD6C-649C7E8F1BF2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEF06BAB-6B5B-4FD8-AD6C-649C7E8F1BF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEF06BAB-6B5B-4FD8-AD6C-649C7E8F1BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEF06BAB-6B5B-4FD8-AD6C-649C7E8F1BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEF06BAB-6B5B-4FD8-AD6C-649C7E8F1BF2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C423A2EE-F155-466A-8EAE-12891C4C275E}
+	EndGlobalSection
+EndGlobal
