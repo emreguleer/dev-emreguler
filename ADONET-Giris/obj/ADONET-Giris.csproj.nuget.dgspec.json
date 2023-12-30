@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\guler\\source\\repos\\DEV-EmreGuler\\dev-emreguler\\dev-emreguler.csproj": {}
+    "C:\\Users\\guler\\source\\repos\\DEV-EmreGuler\\ADONET-Giris\\ADONET-Giris.csproj": {}
   },
   "projects": {
-    "C:\\Users\\guler\\source\\repos\\DEV-EmreGuler\\dev-emreguler\\dev-emreguler.csproj": {
+    "C:\\Users\\guler\\source\\repos\\DEV-EmreGuler\\ADONET-Giris\\ADONET-Giris.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\guler\\source\\repos\\DEV-EmreGuler\\dev-emreguler\\dev-emreguler.csproj",
-        "projectName": "dev-emreguler",
-        "projectPath": "C:\\Users\\guler\\source\\repos\\DEV-EmreGuler\\dev-emreguler\\dev-emreguler.csproj",
+        "projectUniqueName": "C:\\Users\\guler\\source\\repos\\DEV-EmreGuler\\ADONET-Giris\\ADONET-Giris.csproj",
+        "projectName": "ADONET-Giris",
+        "projectPath": "C:\\Users\\guler\\source\\repos\\DEV-EmreGuler\\ADONET-Giris\\ADONET-Giris.csproj",
         "packagesPath": "C:\\Users\\guler\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\guler\\source\\repos\\DEV-EmreGuler\\dev-emreguler\\obj\\",
+        "outputPath": "C:\\Users\\guler\\source\\repos\\DEV-EmreGuler\\ADONET-Giris\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\guler\\AppData\\Roaming\\NuGet\\NuGet.Config",
