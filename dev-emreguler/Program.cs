@@ -18,7 +18,7 @@ namespace DairyProject
             RegisterControl();
         }
         // Taking username and password from user.
-        static void RegisterControl()
+        public static void RegisterControl()
         {
             Console.WriteLine("(ü)ye girişi  (k)ayıt ol");
             char register = char.Parse(Console.ReadLine());
@@ -33,7 +33,7 @@ namespace DairyProject
             }
         }
         //Taking username and password from user.
-        static void Register()
+        public static void Register()
         {
             StreamWriter userName = new StreamWriter(usernamepath, true);
             StreamWriter password = new StreamWriter(passwordpath, true);
