@@ -65,8 +65,6 @@ namespace ADONET_Giris
         public static void UpdateCategory()
         {
             Console.WriteLine("Güncellemek istediğiniz kategoriyi giriniz.");
-            Category category = new Category();
-            category.Name = Console.ReadLine();
             Console.WriteLine(CategoryController.Update(new Category() { Name = Console.ReadLine()})? "Kategori güncellendi":"Hata");
 
         }
