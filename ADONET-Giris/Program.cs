@@ -78,14 +78,21 @@ namespace ADONET_Giris
                 if (Console.ReadLine() == "H")
                     break;
             }
-            while (true)
+            while (addCategory)
             {
-                Console.WriteLine("Lütfen bir yazar giriiniz");
+                Console.WriteLine("Lütfen bir yazar giriniz");
                 book.Authors.Add(AuthorController.Find(Console.ReadLine()));
                 Console.WriteLine("Başka bir yazar eklemek ister misiniz ? E/H");
                 if (Console.ReadLine() == "H")
                     break;
             }
+            while (addCategory) {
+                Console.WriteLine("Lütfen bir yayıncı giriniz.");
+                book.Publishers.Add(PublisherController.Find(Console.ReadLine()));
+                Console.WriteLine("Başka bir yayıncı eklemek ister misiniz ? E/H");
+                if (Console.ReadLine() == "H")
+                    break;
+                }
             //buraya gelindiğinde artık elimizde Categories ' inden Authors' una kadar içi tam dolu bir Book nesnesine sahip olmuş oluyoruz.
             // şimdi bir BookController oluşturup onun içerisine Add metodu tanımlayalım.
 

@@ -1,42 +1,40 @@
 ﻿using ADONET_Giris.Models;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ADONET_Giris.Controller
 {
-    public static  class AuthorController
+    public static class PublisherController
     {
-
-        public static bool Add(Author author)
+        public static bool Add(Publisher publisher)
         {
             SqlConnection conn = Db.conn();
-            SqlCommand cmd = new SqlCommand("INSERT INTO Authors (Name,Descriptino) VALUES(@name,@description)", conn);
-            cmd.Parameters.AddWithValue("@name", author.Name);
-            cmd.Parameters.AddWithValue("@description", author.Description);
+            SqlCommand cmd = new SqlCommand("INSERT INTO Publishers (Name,Descriptino) VALUES(@name,@description)", conn);
+            cmd.Parameters.AddWithValue("@name", publisher.Name);
+            cmd.Parameters.AddWithValue("@description", publisher.Description);
             conn.Open();
             int affectedRows = cmd.ExecuteNonQuery();
             conn.Close();
             return affectedRows > 0 ? true : false;
 
         }
-        public static Author Find(string searchTerm)
+        public static Publisher Find(string searchTerm)
         {
             SqlConnection conn = Db.conn();
-            SqlCommand cmd = new SqlCommand("SELECT TOP(1) * FROM Authors WHERE Name=@name", conn);
+            SqlCommand cmd = new SqlCommand("SELECT TOP(1) * FROM Publishers WHERE Name=@name", conn);
             cmd.Parameters.AddWithValue("name", searchTerm);
             conn.Open();
             SqlDataReader dr = cmd.ExecuteReader();
             dr.Read();
-            
+
             if (dr.HasRows)
             {
-                Author author = new Author
+                Publisher publisher  = new Publisher
                 {
-                    Biography = (string)dr["Biography"],
                     CreatedDate = (DateTime)dr["CreatedDate"],
                     ModifiedDate = (DateTime)dr["ModifiedDate"],
                     Description = (string)dr["Description"],
@@ -47,10 +45,10 @@ namespace ADONET_Giris.Controller
                     IsDeleted = (bool)dr["IsDeleted"],
                 };
                 conn.Close();
-                return author;
-                
+                return publisher;
+
             }
-            return new Author();
+            return new Publisher();
         }
     }
 }
