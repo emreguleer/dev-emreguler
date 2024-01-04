@@ -33,7 +33,7 @@ namespace ADONET_Giris.Controller
             conn.Close();
             if(dr.HasRows)
             {
-                return new Shelf
+                Shelf shelf = new Shelf
                 {
                     Id = (int)dr["ID"],
                     Name = (string)dr["Name"],
@@ -44,6 +44,7 @@ namespace ADONET_Giris.Controller
                     CreatedDate = (DateTime)dr["CreatedDate"],
                     ModifiedDate = (DateTime)dr["ModifiedDate"],
                 };
+                return shelf;
             }
             else
             {

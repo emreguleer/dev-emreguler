@@ -13,15 +13,15 @@ namespace ADONET_Giris.Controller
         public static Author Find(string searchTerm)
         {
             SqlConnection conn = Db.conn();
-            SqlCommand cmd = new SqlCommand("SELECT TOP(1) FROM Authors WHERE Name=@name", conn);
+            SqlCommand cmd = new SqlCommand("SELECT TOP(1) * FROM Authors WHERE Name=@name", conn);
             cmd.Parameters.AddWithValue("name", searchTerm);
             conn.Open();
             SqlDataReader dr = cmd.ExecuteReader();
             dr.Read();
-            conn.Close();
+            
             if (dr.HasRows)
             {
-                return new Author
+                Author author = new Author
                 {
                     Biography = (string)dr["Biography"],
                     CreatedDate = (DateTime)dr["CreatedDate"],
@@ -33,6 +33,9 @@ namespace ADONET_Giris.Controller
                     IsActive = (bool)dr["IsActive"],
                     IsDeleted = (bool)dr["IsDeleted"],
                 };
+                conn.Close();
+                return author;
+                
             }
         }
     }

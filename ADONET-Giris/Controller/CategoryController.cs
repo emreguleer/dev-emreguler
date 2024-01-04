@@ -73,7 +73,7 @@ namespace ADONET_Giris.Controller
         public static Category Find(string searchTerm)
         {
             SqlConnection conn = Db.conn();
-            SqlCommand cmd = new SqlCommand("SELECT TOP(1) FROM Categories WHERE Name=@searchterm", conn);
+            SqlCommand cmd = new SqlCommand("SELECT TOP(1) * FROM Categories WHERE Name=@searchterm", conn);
             cmd.Parameters.AddWithValue("name", searchTerm);
             conn.Open();
             SqlDataReader dr = cmd.ExecuteReader();
@@ -81,7 +81,7 @@ namespace ADONET_Giris.Controller
             conn.Close();
             if(dr.HasRows) 
             {
-                return new Category
+                Category category = new Category
                 {
                     CreatedDate = (DateTime)dr["CreatedDate"],
                     ModifiedDate = (DateTime)dr["ModifiedDate"],
@@ -92,6 +92,7 @@ namespace ADONET_Giris.Controller
                     IsActive = (bool)dr["IsActive"],
                     IsDeleted = (bool)dr["IsDeleted"],
                 };
+                return category;
             }
             else
             {
