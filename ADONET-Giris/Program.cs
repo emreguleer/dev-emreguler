@@ -60,21 +60,23 @@ namespace ADONET_Giris
         {
             Console.WriteLine("Silmek istediğiniz kategori ismini giriniz.");
             Console.WriteLine(CategoryController.Delete(new Category() { Name = Console.ReadLine() }) ? "Kategori eklendi":"Hata");
+            Thread.Sleep(1500);
         }
 
         public static void UpdateCategory()
         {
             Console.WriteLine("Güncellemek istediğiniz kategoriyi giriniz.");
             Console.WriteLine(CategoryController.Update(new Category() { Name = Console.ReadLine()})? "Kategori güncellendi":"Hata");
+            Thread.Sleep(1500);
 
         }
 
         public static void FindCategory()
         {
             Console.WriteLine("Bulmak istediğiniz kategoriyi giriniz.");
-            Category category = new Category();
-            category.Name = Console.ReadLine();
-            CategoryController.Find(category).ForEach(x => Console.WriteLine(x.Id + "-" + x.Name + x.Description == null ? "" : "(" + x.Description + ")"));
+            List<Category> list = new List<Category>();
+            CategoryController.Find(new Category() { Name = Console.ReadLine() }).ForEach(x => Console.WriteLine(x.Id + "-" + x.Name + x.Description == null ? "" : "(" + x.Description + ")"));
+            Thread.Sleep(1500);
         }
 
         public static void ListCategory()
