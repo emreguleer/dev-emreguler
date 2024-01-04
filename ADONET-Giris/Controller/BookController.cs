@@ -32,12 +32,18 @@ namespace ADONET_Giris.Controller
                 cmd.Parameters.AddWithValue("categoryid", category.Id);
                 cmd.ExecuteNonQuery();
             }
-            foreach (Author Author in book.Authors)
+            foreach (Author author in book.Authors)
             {
                 cmd = new SqlCommand("INSERT INTO BooksAuthorsRel (BookId,AuthorId) VALUES (@bookId,@authorId)", conn);
                 cmd.Parameters.AddWithValue("@bookId", book.Id);
-                cmd.Parameters.AddWithValue("@authorId", Author.Id);
+                cmd.Parameters.AddWithValue("@authorId", author.Id);
                 cmd.ExecuteNonQuery();
+            }
+            foreach (Publisher publisher in book.Publishers)
+            {
+                cmd = new SqlCommand("INSERT INTO BooksPublishersRel (BookId,PublisherId) VALUES (@bookId,@authorId", conn);
+                cmd.Parameters.AddWithValue("@bookId", book.Id);
+                cmd.Parameters.AddWithValue("@publisherId", publisher.Id)
             }
             conn.Close();
             return book.Id > 0? true:false;
