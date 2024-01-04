@@ -70,6 +70,31 @@ namespace ADONET_Giris.Controller
             }
             return list;
         }
+        public static List<Category> GetAllByBookId()
+        {
+            SqlConnection conn = Db.conn();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Categories WHERE IsDeleted=0", conn);
+            conn.Open();
+            List<Category> list = new List<Category>();
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                list.Add(new Category
+                {
+                    Id = (int)dr["ID"],
+                    Name = (string)dr["Name"],
+                    Guid = (Guid)dr["Guid"],
+                    Description = (string)dr["Description"],
+                    IsDeleted = (bool)dr["IsDeleted"],
+                    IsActive = (bool)dr["IsActive"],
+                    CreatedDate = (DateTime)dr["CreatedDate"],
+                    ModifiedDate = (DateTime)dr["ModifiedDate"],
+                });
+                conn.Close();
+                return list;
+            }
+            return list;
+        }
         public static Category Find(string searchTerm)
         {
             SqlConnection conn = Db.conn();

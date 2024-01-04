@@ -63,7 +63,18 @@ namespace ADONET_Giris
 
         static void ListBook()
         {
-            
+            List<Book> books = BookController.GetAll();
+            foreach (Book book in books)
+            {
+                Console.WriteLine($"{book.Id} - {book.Name} - {book.Authors}");
+                book.Authors.ToList().ForEach(a=> Console.WriteLine(a.Name + " | "));
+                Console.WriteLine(" - ");
+                book.Publishers.ToList().ForEach(p => Console.WriteLine(p.Name + " | "));
+                Console.WriteLine(" - ");
+                book.Categories.ToList().ForEach(c => Console.WriteLine(c.Name + " | "));
+                Console.WriteLine(" - " + book.Shelf.Name);
+            }
+
         }
 
         static void AddBook()

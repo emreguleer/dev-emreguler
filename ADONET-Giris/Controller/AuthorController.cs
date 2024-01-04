@@ -53,5 +53,30 @@ namespace ADONET_Giris.Controller
             conn.Close();
             return new Author();
         }
+        public static List<Author> GetAllByBookId()
+        {
+            SqlConnection conn = Db.conn();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Categories WHERE IsDeleted=0", conn);
+            conn.Open();
+            List<Author> list = new List<Author>();
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                list.Add(new Author
+                {
+                    Id = (int)dr["ID"],
+                    Name = (string)dr["Name"],
+                    Guid = (Guid)dr["Guid"],
+                    Description = (string)dr["Description"],
+                    IsDeleted = (bool)dr["IsDeleted"],
+                    IsActive = (bool)dr["IsActive"],
+                    CreatedDate = (DateTime)dr["CreatedDate"],
+                    ModifiedDate = (DateTime)dr["ModifiedDate"],
+                });
+                conn.Close();
+                return list;
+            }
+            return list;
+        }
     }
 }

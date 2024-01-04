@@ -25,7 +25,7 @@ namespace ADONET_Giris.Controller
             conn.Open();
             book.Id = (int)cmd.ExecuteScalar();
             //kitap eklendi ve ID si edinildi.
-            foreach(Category category in book.Categories)
+            foreach (Category category in book.Categories)
             {
                 cmd = new SqlCommand("INSERT INTO BooksCategoriesRel (BookId,CategoryId) VALUES (@bookId,@categoryId", conn);
                 cmd.Parameters.AddWithValue("bookid", book.Id);
@@ -43,10 +43,40 @@ namespace ADONET_Giris.Controller
             {
                 cmd = new SqlCommand("INSERT INTO BooksPublishersRel (BookId,PublisherId) VALUES (@bookId,@authorId", conn);
                 cmd.Parameters.AddWithValue("@bookId", book.Id);
-                cmd.Parameters.AddWithValue("@publisherId", publisher.Id)
+                cmd.Parameters.AddWithValue("@publisherId", publisher.Id);
             }
             conn.Close();
-            return book.Id > 0? true:false;
+            return book.Id > 0 ? true : false;
+        }
+        public static List<Book> GetAll()
+        {
+            SqlConnection conn = Db.conn();
+            SqlCommand cmd = new SqlCommand("SELECT b.*,s.Name AS ShelfName FROM Books b JOIN Shelves s ON s.Id = b.ShelfId", conn);
+            conn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Book book = new Book
+                {
+                    Id = (int)dr["Id"],
+                    ISBN = (string)dr["ISBN"],
+                    Guid = (Guid)dr["Guid"],
+                    IsActive = (bool)dr["IsActive"],
+                    IsDeleted = (bool)dr["IsDeleted"],
+                    Name = (string)dr["Name"],
+                    PageCount = (int)dr["PageCount"],
+                    Description = (string)dr["Description"],
+                    ShelfId = (int)dr["ShelfId"],
+                    Shelf = ShelfController.Find((string)dr["ShelfName"]),
+                    CreatedDate = (DateTime)dr["CreatedDate"],
+                    ModifiedDate = (DateTime)dr["ModifiedDate"],
+                    Categories = CategoryController.GetAllByBookId((int)dr["id"]),
+                    Authors = AuthorController.GetAllByBookId((int)dr["id"]),
+
+
+                }
+            }
+            conn.Close();
         }
     }
 }
