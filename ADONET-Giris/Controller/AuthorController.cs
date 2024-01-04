@@ -50,6 +50,7 @@ namespace ADONET_Giris.Controller
                 return author;
                 
             }
+            conn.Close();
             return new Author();
         }
     }

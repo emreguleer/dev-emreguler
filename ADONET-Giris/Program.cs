@@ -23,6 +23,7 @@ namespace ADONET_Giris
             Console.WriteLine("3-Kategori Güncelle");
             Console.WriteLine("4-Kategori Sil");
             Console.WriteLine("5-Kitap Ekle");
+            Console.WriteLine("6-Kitap Listele");
             string choice = Console.ReadLine();
             Choice(choice);
         }
@@ -49,6 +50,10 @@ namespace ADONET_Giris
             {
                 AddBook();
             }
+            else if (choice == "6")
+            {
+                ListBook();
+            }
             else
             {
                 Console.WriteLine("Hatalı Seçim.");
@@ -56,7 +61,12 @@ namespace ADONET_Giris
 
         }
 
-         static void AddBook()
+        static void ListBook()
+        {
+            
+        }
+
+        static void AddBook()
         {
             Book book = new Book();
             Console.WriteLine("Kitabın adını giriniz.");
@@ -78,7 +88,7 @@ namespace ADONET_Giris
                 if (Console.ReadLine() == "H")
                     break;
             }
-            while (addCategory)
+            while (true)
             {
                 Console.WriteLine("Lütfen bir yazar giriniz");
                 book.Authors.Add(AuthorController.Find(Console.ReadLine()));
@@ -86,13 +96,14 @@ namespace ADONET_Giris
                 if (Console.ReadLine() == "H")
                     break;
             }
-            while (addCategory) {
-                Console.WriteLine("Lütfen bir yayıncı giriniz.");
+            while (true) 
+            {
+                Console.WriteLine("Lütfen bir yayın evi giriniz.");
                 book.Publishers.Add(PublisherController.Find(Console.ReadLine()));
-                Console.WriteLine("Başka bir yayıncı eklemek ister misiniz ? E/H");
+                Console.WriteLine("Başka bir yayın evi eklemek ister misiniz ? E/H");
                 if (Console.ReadLine() == "H")
                     break;
-                }
+            }
             //buraya gelindiğinde artık elimizde Categories ' inden Authors' una kadar içi tam dolu bir Book nesnesine sahip olmuş oluyoruz.
             // şimdi bir BookController oluşturup onun içerisine Add metodu tanımlayalım.
 

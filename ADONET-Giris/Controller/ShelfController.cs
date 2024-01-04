@@ -48,6 +48,7 @@ namespace ADONET_Giris.Controller
             }
             else
             {
+                conn.Close();
                 return new Shelf();
             }
         }

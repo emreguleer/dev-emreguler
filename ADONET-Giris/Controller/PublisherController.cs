@@ -48,6 +48,7 @@ namespace ADONET_Giris.Controller
                 return publisher;
 
             }
+            conn.Close();
             return new Publisher();
         }
     }
