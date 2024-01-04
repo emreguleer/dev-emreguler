@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\guler\\source\\repos\\DEV-EmreGuler\\ADONET-Giris\\ADONET-Giris.csproj": {}
+    "C:\\Users\\Emre\\Source\\Repos\\dev-emreguler\\ADONET-Giris\\ADONET-Giris.csproj": {}
   },
   "projects": {
-    "C:\\Users\\guler\\source\\repos\\DEV-EmreGuler\\ADONET-Giris\\ADONET-Giris.csproj": {
+    "C:\\Users\\Emre\\Source\\Repos\\dev-emreguler\\ADONET-Giris\\ADONET-Giris.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\guler\\source\\repos\\DEV-EmreGuler\\ADONET-Giris\\ADONET-Giris.csproj",
+        "projectUniqueName": "C:\\Users\\Emre\\Source\\Repos\\dev-emreguler\\ADONET-Giris\\ADONET-Giris.csproj",
         "projectName": "ADONET-Giris",
-        "projectPath": "C:\\Users\\guler\\source\\repos\\DEV-EmreGuler\\ADONET-Giris\\ADONET-Giris.csproj",
-        "packagesPath": "C:\\Users\\guler\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\guler\\source\\repos\\DEV-EmreGuler\\ADONET-Giris\\obj\\",
+        "projectPath": "C:\\Users\\Emre\\Source\\Repos\\dev-emreguler\\ADONET-Giris\\ADONET-Giris.csproj",
+        "packagesPath": "C:\\Users\\Emre\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Emre\\Source\\Repos\\dev-emreguler\\ADONET-Giris\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\guler\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Emre\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,6 +43,10 @@
             "Microsoft.Data.SqlClient": {
               "target": "Package",
               "version": "[5.1.2, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
             }
           },
           "imports": [
@@ -61,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

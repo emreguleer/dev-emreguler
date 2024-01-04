@@ -11,7 +11,7 @@ namespace ADONET_Giris
     {
         public static SqlConnection conn()
         {
-            return new SqlConnection("Server=DESKTOP-17L4C0E\\SQLEXPRESS; Database=Bookstore; Integrated Security = True; TrustServerCertificate=True");
+            return new SqlConnection("Server=DESKTOP-M577INS\\SQLEXPRESS; Database=Bookstore; Integrated Security = True; TrustServerCertificate=True");
         }
     }
 }

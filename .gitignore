@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/dev-emreguler/FileContentIndex
+/ADONET-Giris/obj/Debug/net7.0

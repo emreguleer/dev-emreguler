@@ -3,11 +3,16 @@ using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Protocols;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using SqlCommand = Microsoft.Data.SqlClient.SqlCommand;
+using SqlConnection = Microsoft.Data.SqlClient.SqlConnection;
+using SqlDataReader = Microsoft.Data.SqlClient.SqlDataReader;
 
 namespace ADONET_Giris.Controller
 {
@@ -16,7 +21,7 @@ namespace ADONET_Giris.Controller
         public static bool Add(Category category)
         {
             SqlConnection conn = Db.conn();
-            SqlCommand cmd = new SqlCommand("INSERT INTO Categories VALUES(@guid, @name, @description, @IsDeleted, @IsActive, @ModifiedDate, @CreatedDate", conn);
+            SqlCommand cmd = new SqlCommand("INSERT INTO Categories VALUES(@guid, @name, @description, @IsDeleted, @IsActive, @ModifiedDate, @CreatedDate)", conn);
             cmd.Parameters.AddWithValue("guid", category.Guid);
             cmd.Parameters.AddWithValue("name", category.Name);
             cmd.Parameters.AddWithValue("description", category.Description==null?DBNull.Value:category.Description);
@@ -65,43 +70,43 @@ namespace ADONET_Giris.Controller
             }
             return list;
         }
-        public static List<Category> Find(Category category)
+        public static Category Find(string searchTerm)
         {
             SqlConnection conn = Db.conn();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Categories WHERE Name=@name");
-            cmd.Parameters.AddWithValue("name", category.Name);
+            SqlCommand cmd = new SqlCommand("SELECT TOP(1) FROM Categories WHERE Name=@searchterm", conn);
+            cmd.Parameters.AddWithValue("name", searchTerm);
             conn.Open();
-            List<Category> list = new List<Category>();
             SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+            dr.Read();
+            conn.Close();
+            if(dr.HasRows) 
             {
-                list.Add(new Category
+                return new Category
                 {
-                    Id = (int)dr["ID"],
-                    Name = (string)dr["Name"],
-                    Guid = (Guid)dr["Guid"],
-                    Description = (string)dr["Description"],
-                    IsDeleted = (bool)dr["IsDeleted"],
-                    IsActive = (bool)dr["IsActive"],
                     CreatedDate = (DateTime)dr["CreatedDate"],
                     ModifiedDate = (DateTime)dr["ModifiedDate"],
-                });
-                conn.Close();
-                return list;
+                    Id = (int)dr["Id"],
+                    Name = (string)dr["Name"],
+                    Description = (string)dr["Description"],
+                    Guid = (Guid)dr["Guid"],
+                    IsActive = (bool)dr["IsActive"],
+                    IsDeleted = (bool)dr["IsDeleted"],
+                };
             }
-            return list;
+            else
+            {
+                return new Category();
+            } 
         }
         public static bool Update(Category category)
         {
             SqlConnection conn = Db.conn();
-            SqlCommand cmd = new SqlCommand("UPDATE Categories SET Id=@id, Name=@name,Description=@description, IsDeleted=@IsDeleted, IsActive=@IsActive, ModifiedDate=@ModifiedDate, CreatedDate=@CreatedDate WHERE Name=@name" );
-            cmd.Parameters.AddWithValue("guid", category.Guid);
+            SqlCommand cmd = new SqlCommand("UPDATE Categories SET Name=@name,Description=@description, IsDeleted=@IsDeleted, IsActive=@IsActive, ModifiedDate=GETDATE(),WHERE Id=@Id)", conn );
             cmd.Parameters.AddWithValue("name", category.Name);
             cmd.Parameters.AddWithValue("description", category.Description == null ? DBNull.Value : category.Description);
             cmd.Parameters.AddWithValue("isdeleted", category.IsDeleted);
             cmd.Parameters.AddWithValue("isactive", category.IsActive);
-            cmd.Parameters.AddWithValue("modifieddate", category.ModifiedDate);
-            cmd.Parameters.AddWithValue("CreatedDate", category.CreatedDate);
+            cmd.Parameters.AddWithValue("id", category.Id);
             conn.Open();
             int affectedRows = cmd.ExecuteNonQuery();
             conn.Close();
