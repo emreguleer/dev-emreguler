@@ -103,7 +103,7 @@ namespace ADONET_Giris.Controller
             conn.Open();
             SqlDataReader dr = cmd.ExecuteReader();
             dr.Read();
-            conn.Close();
+            
             if(dr.HasRows) 
             {
                 Category category = new Category
@@ -117,6 +117,7 @@ namespace ADONET_Giris.Controller
                     IsActive = (bool)dr["IsActive"],
                     IsDeleted = (bool)dr["IsDeleted"],
                 };
+                conn.Close();
                 return category;
             }
             else

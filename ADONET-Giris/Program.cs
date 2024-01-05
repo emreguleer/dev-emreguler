@@ -87,11 +87,10 @@ namespace ADONET_Giris
             Console.WriteLine("Kitabın ISBN numarasını giriniz.");
             book.ISBN = Console.ReadLine();
             Console.WriteLine("Kitabın sayfa sayısını giriniz.");
-            int pageCount = int.Parse(Console.ReadLine());
+            book.PageCount = int.Parse(Console.ReadLine());
             Console.WriteLine("Lütfen kitabın raf numarasını yazıınz");
             book.ShelfId = ShelfController.Find(Console.ReadLine()).Id;
-            bool addCategory = true;
-            while (addCategory)
+            while (true)
             {
                 Console.WriteLine("Kategori giriniz.");
                 book.Categories.Add(CategoryController.Find(Console.ReadLine()));
