@@ -32,30 +32,30 @@ namespace ToDoApp.Controller
             }
             return todo.Id > 0 ? true : false;
         }
-        public static List<ToDo> GetAll()
-        {
-            SqlConnection conn = Db.conn();
-            SqlCommand cmd = new SqlCommand("SELECT t.*, p.Name AS PriortyName, s.Name AS StatusName FROM ToDo t JOIN Priority p ON t.PriorityId = p.Id" +
-                "JOIN Status s ON s.Id = t.StatusId", conn);
-            conn.Open();
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                ToDo todo = new ToDo
-                {
-                    Id = (int)dr["Id"],
-                    Name = (string)dr["Name"],
-                    Description = (string)dr["Description"],
-                    DeadLine = (DateTime)dr["DeadLine"],
-                    CreatedDate = (DateTime)dr["CreatedDate"],
-                    IsDeleted = (bool)dr["IsDeleted"],
-                    PriorityId = (int)dr["PriorityId"],
-                    Priority = PriorityController.Find((string)dr["PriorityName"]),
-                    StatusId = (int)dr["StatusId"],
-                    Status = StatusController.Find((string)dr["StatusName"]),
-                };
-            }
+        //public static List<ToDo> GetAll()
+        //{
+        //    SqlConnection conn = Db.conn();
+        //    SqlCommand cmd = new SqlCommand("SELECT t.*, p.Name AS PriortyName, s.Name AS StatusName FROM ToDo t JOIN Priority p ON t.PriorityId = p.Id" +
+        //        "JOIN Status s ON s.Id = t.StatusId", conn);
+        //    conn.Open();
+        //    SqlDataReader dr = cmd.ExecuteReader();
+        //    while (dr.Read())
+        //    {
+        //        ToDo todo = new ToDo
+        //        {
+        //            Id = (int)dr["Id"],
+        //            Name = (string)dr["Name"],
+        //            Description = (string)dr["Description"],
+        //            DeadLine = (DateTime)dr["DeadLine"],
+        //            CreatedDate = (DateTime)dr["CreatedDate"],
+        //            IsDeleted = (bool)dr["IsDeleted"],
+        //            PriorityId = (int)dr["PriorityId"],
+        //            //Priority = PriorityController.Find((string)dr["PriorityName"]),
+        //            //StatusId = (int)dr["StatusId"],
+        //            //Status = StatusController.Find((string)dr["StatusName"]),
+        //        };
+            //}
 
-        }
+        
     }
 }

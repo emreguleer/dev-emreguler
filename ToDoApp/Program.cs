@@ -25,6 +25,7 @@ namespace ToDoApp
             Console.WriteLine("7-Priority Listele");
             Console.WriteLine("8-Tag Ekle");
             Console.WriteLine("9-Tag Listele");
+            Console.WriteLine("10-Tag Güncelle");
             string choice = (Console.ReadLine());
             Choice(choice);
         }
@@ -68,7 +69,49 @@ namespace ToDoApp
             {
                 ListTag();
             }
+            else if (choice == "10")
+            {
+                UpdateTag();
+            }
             else
+            {
+                Console.WriteLine("Hata");
+            }
+        }
+
+        private static void AddToDo()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void ListToDo()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void UpdateToDo()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void ListPriority()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void UpdateTag()
+        {
+            ListTag();
+            Console.WriteLine("\nLütfen güncellemek istediğiniz etiketin ID'sini giriniz.");
+            int id = int.Parse(Console.ReadLine());
+            Tag tag = TagController.FindById(id);
+            Console.WriteLine("Lütfen etiketin yeni adını giriniz.");
+            tag.Name = Console.ReadLine();
+            if (TagController.Update(tag))
+            {
+                Console.WriteLine("Başarıyla güncellendi");
+            }
+            else 
             {
                 Console.WriteLine("Hata");
             }
@@ -79,7 +122,7 @@ namespace ToDoApp
             List<Tag> list = TagController.GetAll();
             foreach (Tag tag in list)
             {
-                Console.Write(tag.Name + "-");
+                Console.Write($"{tag.Id} - {tag.Name} | ");
             }
         }
 
