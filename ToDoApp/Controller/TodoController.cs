@@ -52,9 +52,7 @@ namespace ToDoApp.Controller
                     PriorityId = (int)dr["PriorityId"],
                     Priority = PriorityController.Find((string)dr["PriorityName"]),
                     StatusId = (int)dr["StatusId"],
-                    Status = PriorityController.Find((string)dr["StatusName"])
-
-
+                    Status = StatusController.Find((string)dr["StatusName"]),
                 };
             }
 

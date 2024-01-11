@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.Design;
+using ToDoApp.Controller;
+using ToDoApp.Models;
 
 namespace ToDoApp
 {
@@ -21,6 +23,8 @@ namespace ToDoApp
             Console.WriteLine("5-Status Listele");
             Console.WriteLine("6-Priority Ekle");
             Console.WriteLine("7-Priority Listele");
+            Console.WriteLine("8-Tag Ekle");
+            Console.WriteLine("9-Tag Listele");
             string choice = (Console.ReadLine());
             Choice(choice);
         }
@@ -56,13 +60,67 @@ namespace ToDoApp
             {
                 ListPriority();
             }
+            else if (choice == "8")
+            {
+                AddTag();
+            }
+            else if (choice == "9")
+            {
+                ListTag();
+            }
             else
             {
                 Console.WriteLine("Hata");
             }
         }
-        
-            
-       
+
+        private static void ListTag()
+        {
+            List<Tag> list = TagController.GetAll();
+            foreach (Tag tag in list)
+            {
+                Console.Write(tag.Name + "-");
+            }
+        }
+
+        private static void AddTag()
+        {
+            Console.WriteLine("Önceliğinizi seçiniz.");
+            if (TagController.Add(new Tag { Name = Console.ReadLine() }))
+                Console.WriteLine("Öncelik belirlendi.");
+            else
+                Console.WriteLine("Hata.");
+        }
+
+        private static void AddPriority()
+        {
+            Console.WriteLine("Önceliğinizi seçiniz.");
+            if (PriorityController.Add(new Priority { Name = Console.ReadLine() }))
+                Console.WriteLine("Öncelik belirlendi.");
+            else
+                Console.WriteLine("Hata.");
+                
+        }
+
+        private static void ListStatus()
+        {
+            throw new NotImplementedException();
+        }
+
+        static void AddStatus()
+        {
+            Console.WriteLine("Lütfen status ismini giriniz.");
+            //string statusName = Console.ReadLine();
+            //Status status = new Status { Name = statusName};
+            if(StatusController.Add(new Status { Name = Console.ReadLine()}))
+            { 
+                Console.WriteLine("Status eklendi.");
+            }
+            else 
+            {
+                Console.WriteLine("Hata oluştur.");
+            }
+            Thread.Sleep(1000);
+        }
     }
 }
